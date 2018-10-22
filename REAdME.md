@@ -1,6 +1,10 @@
 Test
 =====
-POST 
+In PowerShell: invoke-restmethod "http://localhost/cmd?attr=Get-Time" -Method Post
+
+POST http://<server_ip>/cmd?attr = command
+
+
 * http://localhost/cmd?attr=Get-Service
 
 * http://localhost/cmd?attr=Get-Time
@@ -20,3 +24,38 @@ HOST
 Execute following command in PowerShell
 
  Set-ExecutionPolicy -ExecutionPolicy BYPASS
+ 
+ COMMANDS
+ ========
+ Diagnostic
+ ----------
+ 
+* Test-Connection
+ 
+* Test-NetConnection
+ 
+* Resolve-DNSName
+ 
+ Monitoring
+ ----------
+ 
+* Get-Eventlog
+ 
+* Get-Process
+ 
+* Get-Service
+ 
+ FireWall Configuration
+ ----------------------
+ 
+* Get-NetFirewallRule
+ 
+* Set-NetFirewallRule
+ 
+* Enable-NetFirewallRule
+ 
+* Disable-NetFirewallRule
+
+Get Data from local invoke REST
+-------------------------------
+http://localhost/cmd?attr=invoke-restmethod "http://localhost/cmd?attr=Get-Time" -Method Post

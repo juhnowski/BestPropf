@@ -21,33 +21,27 @@ public class Main {
         try {
             sb.append("{\"Input\":\"").append(cmd).append("\"");
             String command = "powershell.exe  "+cmd;
-            //Getting the version
-            //String command = "powershell.exe  $PSVersionTable.PSVersion";
-            // Executing the command
             Process powerShellProcess = Runtime.getRuntime().exec(command);
-            // Getting the results
             powerShellProcess.getOutputStream().close();
             String line;
-            sb.append("\",\"Output\":\"");
+            sb.append("\",\"Output\":[");
             BufferedReader stdout = new BufferedReader(new InputStreamReader(
-                    powerShellProcess.getInputStream()));
+                    powerShellProcess.getInputStream(),"cp866"));
             while ((line = stdout.readLine()) != null) {
-                //byte[] ptext = line.getBytes("windows-1251");
-                //String value = new String(ptext, "UTF-8");
-                //System.out.println(value);
-                //String value = new String(line.getBytes("windows-1251"), "UTF-8");
-
-                sb.append(line);
+                System.out.println(line);
+                sb.append("\"").append(line).append("\",");
             }
+            sb.append("]");
             stdout.close();
-            sb.append("\",\"Error\":\"");
+            sb.append(",\"Error\":[");
             BufferedReader stderr = new BufferedReader(new InputStreamReader(
-                    powerShellProcess.getErrorStream()));
+                    powerShellProcess.getErrorStream(),"cp866"));
             while ((line = stderr.readLine()) != null) {
-                sb.append(line);
+                sb.append("\"").append(line).append("\",");
             }
             stderr.close();
-            sb.append("\",\"Status\":\"Done\"}");
+            sb.append("]");
+            sb.append(",\"Status\":\"Done\"}");
         } catch (Exception e){
             sb.append("\",\"Status\":\"").append(e.getMessage()).append("\"}");
         }
@@ -55,6 +49,7 @@ public class Main {
     }
     public static void main(String[] args) {
         port(80);
-        post("/cmd", (req, res) -> process(req.queryParams("attr")));
+        get("/cmd", (req, res) -> process(req.queryParams("attr")));
+        //System.out.println(process("Get-LocalUser"));
     }
 }
