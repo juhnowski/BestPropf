@@ -4,6 +4,7 @@ In PowerShell: invoke-restmethod "http://localhost/cmd?attr=Get-Time" -Method Po
 
 POST http://<server_ip>/cmd?attr = command
 
+* http://localhost/cmd?attr=Get-LocalUser
 
 * http://localhost/cmd?attr=Get-Service
 
@@ -58,4 +59,4 @@ Execute following command in PowerShell
 
 Get Data from local invoke REST
 -------------------------------
-http://localhost/cmd?attr=invoke-restmethod "http://localhost/cmd?attr=Get-Time" -Method Post
+http://localhost/cmd?attr=invoke-restmethod%20%22http://localhost/cmd?attr=Get-Time%22%20-Method%20Get
