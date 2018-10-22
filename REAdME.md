@@ -60,3 +60,16 @@ Execute following command in PowerShell
 Get Data from local invoke REST
 -------------------------------
 http://localhost/cmd?attr=invoke-restmethod%20%22http://localhost/cmd?attr=Get-Time%22%20-Method%20Get
+
+Culture
+-------
+Get-Culture
+
+Run a command on a remote server
+--------------------------------
+Invoke-Command -ComputerName server01 -Credential domain01\user01 -ScriptBlock {Get-Culture}
+
+
+Run a script on all the computers listed in a text file
+-------------------------------------------------------
+Invoke-Command -ComputerName (Get-Content Servers.txt) -FilePath C:\Scripts\Sample.ps1 -ArgumentList Process, Service
